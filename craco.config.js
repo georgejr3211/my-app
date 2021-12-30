@@ -3,11 +3,6 @@ const path = require(`path`);
 
 const aliases = {
   '@': './src',
-  '@components': './src/components',
-  '@config': './src/config',
-  '@store': './src/store',
-  '@pages': './src/pages',
-  '@services': './src/services',
 };
 
 const resolvedAliases = Object.fromEntries(

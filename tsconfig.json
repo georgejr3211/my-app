@@ -17,12 +17,7 @@
     "jsx": "react",
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["./*"],
-      "@components/*": ["./components/*"],
-      "@pages/*": ["./pages/*"],
-      "@services/*": ["./services/*"],
-      "@config/*": ["./config/*"],
-      "@store/*": ["./store/*"]
+      "@/*": ["./*"]
     }
   },
   "include": ["src"]
