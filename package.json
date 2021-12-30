@@ -4,15 +4,16 @@
   "private": true,
   "homepage": "https://georgejr3211.github.io/my-app",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
     "prepare": "husky install",
     "pre-commit:lint-staged": "lint-staged"
   },
   "dependencies": {
+    "@craco/craco": "^6.4.3",
     "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -25,7 +26,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
-    "react-scripts": "5.0.0",
+    "react-scripts": "^5.0.0",
     "typescript": "^4.5.4",
     "web-vitals": "^2.1.2"
   },
