@@ -1,18 +1,22 @@
-import Layout from '@/layout';
 import Product from '@/pages/Product';
+import Template from '@/template';
 import * as React from 'react';
 import { RouteObject, useRoutes } from 'react-router-dom';
 
-export default function RouterOutlet() {
+import * as S from './styles';
+
+export default function RouterTemplate() {
+  const menus = [{ id: 1, title: 'Products', icon: null, path: '/products' }];
+
   const routes: RouteObject[] = [
     {
       path: '/',
-      element: <Layout />,
-      children: [{ index: true, element: <Product /> }],
+      element: <Template menus={menus} />,
+      children: [{ path: '/products', element: <Product /> }],
     },
   ];
 
   const element = useRoutes(routes);
 
-  return <div>{element}</div>;
+  return <S.Wrapper>{element}</S.Wrapper>;
 }
