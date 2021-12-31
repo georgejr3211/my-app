@@ -1,3 +1,6 @@
+import '@/styles/antd.css';
+
+import { Button } from 'antd';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,16 +13,16 @@ function App(): any {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <button type="button" onClick={() => dispatch(increment())}>
+    <>
+      <Button type="primary" onClick={() => dispatch(increment())}>
         Increment
-      </button>
+      </Button>
       {count}
-      <button type="button" onClick={() => dispatch(decrement())}>
+      <Button type="primary" onClick={() => dispatch(decrement())}>
         Decrement
-      </button>
+      </Button>
       <RouterOutlet />
-    </div>
+    </>
   );
 }
 
