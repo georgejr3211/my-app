@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://georgejr3211.github.io/my-app",
+  "homepage": ".",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
