@@ -1,20 +1,21 @@
 import { UserOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
-import React, { useState } from 'react';
+import { Button, Dropdown, Menu } from 'antd';
+import React from 'react';
 
 import * as S from './Header.styles';
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const menu = () => (
+    <Menu aria-label="modal-profile">
+      <Menu.Item key="settings">Settings</Menu.Item>
+    </Menu>
+  );
 
   return (
     <S.Wrapper>
-      <Button aria-label="avatar" shape="circle" onClick={() => setIsOpen(true)} icon={<UserOutlined />} />
-      {isOpen && (
-        <ul aria-label="modal-profile">
-          <li>Settings</li>
-        </ul>
-      )}
+      <Dropdown overlay={menu} trigger={['click']}>
+        <Button aria-label="avatar" shape="circle" icon={<UserOutlined />} />
+      </Dropdown>
     </S.Wrapper>
   );
 }

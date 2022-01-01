@@ -10,25 +10,25 @@ describe('<Header />', () => {
   });
 
   // 1. UI
-  it('should render avatar image', () => {
+  it('should render avatar image', async () => {
     // Arrange
     render(wrapper);
     // Act
-    const avatar = screen.getByLabelText('avatar');
+    const avatar = await screen.findByLabelText('avatar');
 
     // Assert
     expect(avatar).toBeInTheDocument();
   });
 
   // 2. Functionalities
-  it('should be able to display pop-up menu profile', () => {
+  it('should be able to display pop-up menu profile', async () => {
     // Arrange
     render(wrapper);
 
     // Act
-    const avatar = screen.getByLabelText('avatar');
+    const avatar = await screen.findByLabelText('avatar');
     userEvent.click(avatar);
-    const modalProfile = screen.getByLabelText('modal-profile');
+    const modalProfile = await screen.findByLabelText('modal-profile');
 
     // Assert
     expect(modalProfile).toBeInTheDocument();
