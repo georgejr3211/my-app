@@ -1,5 +1,5 @@
-import { UserOutlined } from '@ant-design/icons';
-import { Button, Dropdown, Menu } from 'antd';
+import { Dropdown, Menu } from 'antd';
+import Avatar from 'antd/lib/avatar/avatar';
 import React from 'react';
 
 import * as S from './Header.styles';
@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <S.Wrapper>
       <Dropdown overlay={menu} trigger={['click']}>
-        <Button aria-label="avatar" shape="circle" icon={<UserOutlined />} />
+        <S.AvatarWrapper size={38} aria-label="avatar" shape="circle" src="https://joeschmoe.io/api/v1/random" />
       </Dropdown>
     </S.Wrapper>
   );
