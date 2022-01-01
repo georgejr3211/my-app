@@ -1,9 +1,8 @@
-import Avatar from 'antd/lib/avatar/avatar';
-import React, { useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
-
-import * as S from './styles';
 import { Button } from 'antd';
+import React, { useState } from 'react';
+
+import * as S from './Header.styles';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);

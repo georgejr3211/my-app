@@ -1,9 +1,8 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { act } from 'react-dom/test-utils';
 import { BrowserRouter } from 'react-router-dom';
 
-import Sidebar from '.';
+import Sidebar from './Sidebar';
 
 describe('<Sidebar />', () => {
   const values = [

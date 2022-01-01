@@ -2,7 +2,7 @@ import { Menu } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import * as S from './styles';
+import * as S from './Sidebar.styles';
 
 type Props = {
   values: any[];

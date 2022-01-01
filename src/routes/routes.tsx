@@ -1,9 +1,9 @@
-import Product from '@/pages/Product';
-import Template from '@/template';
+import Product from '@/pages/Product/Product';
+import Template from '@/template/Template';
 import * as React from 'react';
 import { RouteObject, useRoutes } from 'react-router-dom';
 
-import * as S from './styles';
+import * as S from './routes.styles';
 
 export default function RouterTemplate() {
   const menus = [{ id: 1, title: 'Products', icon: null, path: '/products' }];
