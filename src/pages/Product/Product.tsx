@@ -1,6 +1,14 @@
+import Header from '@/components/Header/Header';
 import React from 'react';
 import * as S from './Product.styles';
 
 export default function Product() {
-  return <S.Wrapper>Product page</S.Wrapper>;
+  const onRefresh = (params?: any) => {
+    console.log('call on refresh method', params);
+  };
+  return (
+    <S.Wrapper>
+      <Header title="Products" onRefresh={onRefresh} />
+    </S.Wrapper>
+  );
 }

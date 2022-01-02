@@ -1,5 +1,4 @@
 import { Dropdown, Menu } from 'antd';
-import Avatar from 'antd/lib/avatar/avatar';
 import React from 'react';
 
 import * as S from './Header.styles';
