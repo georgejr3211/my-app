@@ -46,15 +46,15 @@ describe('<Header />', () => {
     expect(refreshButton).toBeInTheDocument();
   });
 
-  it('should render show rows dropdown', () => {
+  it('should render dropdown', () => {
     // Arrange
     render(wrapper);
 
     // Act
-    const showDropdownSelect = screen.getByLabelText('show-limit-rows');
+    const select = screen.getByRole('combobox');
 
     // Assert
-    expect(showDropdownSelect).toBeInTheDocument();
+    expect(select).toBeInTheDocument();
   });
 
   // Functionalities
@@ -84,17 +84,19 @@ describe('<Header />', () => {
     expect(onRefresh).toHaveBeenCalledTimes(1);
   });
 
-  it('should call onRefresh method when dropdown select has been changed', () => {
+  it('should call onRefresh method when dropdown select has been changed', async () => {
     // Arrange
     const onRefresh = jest.fn((params) => params);
     render(<Header title="Products" onRefresh={onRefresh} />);
 
     // Act
-    const rowOptions = screen.getByLabelText('show-limit-rows');
-    userEvent.selectOptions(rowOptions, [screen.getAllByLabelText('row-option')[1]]);
+    const select = screen.getByRole('combobox');
+    userEvent.click(select);
+
+    const option = await screen.findAllByText('20');
+    userEvent.click(option[1], undefined, { skipPointerEventsCheck: true });
 
     // Assert
     expect(onRefresh).toHaveBeenCalledTimes(1);
-    expect(onRefresh.mock.results[0].value).toEqual({ limit: 20 });
   });
 });

@@ -1,14 +1,50 @@
 import Header from '@/components/Header/Header';
-import React from 'react';
+import { Table } from 'antd';
+import React, { useEffect, useReducer } from 'react';
+
 import * as S from './Product.styles';
+import * as ProductService from './Product.service';
+import { InitialState, Params } from './Product.types';
 
 export default function Product() {
-  const onRefresh = (params?: any) => {
-    console.log('call on refresh method', params);
+  const [state, setState] = useReducer((s: InitialState, changeState: InitialState) => ({ ...s, ...changeState }), {
+    dataSource: [],
+    pagination: {
+      current: 1,
+      pageSize: 10,
+    },
+    loading: false,
+    total: 0,
+  });
+
+  const columns = [
+    { title: 'Id', key: 'id', dataIndex: 'id', width: 100 },
+    { title: 'Descrição', key: 'descricao', dataIndex: 'descricao' },
+  ];
+
+  const onRefresh = async (params?: Params) => {
+    setState({ loading: true });
+    if (params?.pageSize) setState({ pagination: { pageSize: params.pageSize } });
+    const [dataSource, total] = await ProductService.getAll(params);
+    setState({ dataSource, total, loading: false });
   };
+
+  useEffect(() => {
+    onRefresh();
+  }, []);
+
   return (
-    <S.Wrapper>
-      <Header title="Products" onRefresh={onRefresh} />
+    <S.Wrapper direction="vertical">
+      <Header data-testid="HeaderC" title="Products" onRefresh={onRefresh} />
+      <Table
+        rowKey={(record) => record.id}
+        pagination={state.pagination}
+        loading={state.loading}
+        dataSource={state.dataSource}
+        columns={columns}
+        onChange={onRefresh}
+        scroll={{ y: 550 }}
+      />
     </S.Wrapper>
   );
 }

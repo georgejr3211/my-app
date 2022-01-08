@@ -74,5 +74,10 @@
     "src/**/*.{ts,tsx}": [
       "eslint --fix"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    }
   }
 }

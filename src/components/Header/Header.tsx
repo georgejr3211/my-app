@@ -1,5 +1,7 @@
+import { Button, Select } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import React from 'react';
+
 import * as S from './Header.styles';
 
 interface Props {
@@ -10,37 +12,26 @@ interface Props {
 
 export default function Header({ title, onAdd = () => null, onRefresh = () => null }: Props) {
   const defaultRowsLimit = 10;
+  const limits = [
+    { value: 10, label: '10' },
+    { value: 20, label: '20' },
+    { value: 30, label: '30' },
+    { value: 40, label: '40' },
+    { value: 50, label: '50' },
+  ];
 
   const changeRowLimit = (e: any) => {
-    onRefresh({ limit: +e.target.value });
+    onRefresh({ pageSize: e });
   };
 
   return (
     <S.Wrapper>
       <Title>{title}</Title>
-      <select aria-label="show-limit-rows" defaultValue={defaultRowsLimit} onChange={changeRowLimit}>
-        <option aria-label="row-option" value={10}>
-          10
-        </option>
-        <option aria-label="row-option" value={20}>
-          20
-        </option>
-        <option aria-label="row-option" value={30}>
-          30
-        </option>
-        <option aria-label="row-option" value={40}>
-          40
-        </option>
-        <option aria-label="row-option" value={50}>
-          50
-        </option>
-      </select>
-      <button type="button" onClick={() => onRefresh()}>
-        Atualizar
-      </button>
-      <button type="button" onClick={() => onAdd()}>
-        Adicionar
-      </button>
+      <S.SpaceWrapper>
+        <Select options={limits} defaultValue={defaultRowsLimit} style={{ width: 120 }} onChange={changeRowLimit} />
+        <Button onClick={() => onRefresh()}>Atualizar</Button>
+        <Button onClick={() => onAdd()}>Adicionar</Button>
+      </S.SpaceWrapper>
     </S.Wrapper>
   );
 }
