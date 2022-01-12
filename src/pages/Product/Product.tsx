@@ -5,8 +5,10 @@ import React, { useEffect, useReducer } from 'react';
 import * as S from './Product.styles';
 import * as ProductService from './Product.service';
 import { InitialState, Params } from './Product.types';
+import { useNavigate } from 'react-router-dom';
 
 export default function Product() {
+  const navigate = useNavigate();
   const [state, setState] = useReducer((s: InitialState, changeState: InitialState) => ({ ...s, ...changeState }), {
     dataSource: [],
     pagination: {
@@ -29,14 +31,20 @@ export default function Product() {
     setState({ dataSource, total, loading: false });
   };
 
+  const onAdd = () => {
+    navigate('./new');
+    console.log('call on add method');
+  };
+
   useEffect(() => {
     onRefresh();
   }, []);
 
   return (
     <S.Wrapper direction="vertical">
-      <Header data-testid="HeaderC" title="Products" onRefresh={onRefresh} />
+      <Header title="Products" onRefresh={onRefresh} onAdd={onAdd} />
       <Table
+        data-testid="Table"
         rowKey={(record) => record.id}
         pagination={state.pagination}
         loading={state.loading}

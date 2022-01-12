@@ -2,7 +2,10 @@ import Sider from 'antd/lib/layout/Sider';
 import styled from 'styled-components';
 
 export const Wrapper = styled(Sider)`
-  height: 100%;
+  overflow: auto;
+  height: 100vh;
+  position: fixed;
+  left: 0;
 `;
 
 export const Brand = styled.div`

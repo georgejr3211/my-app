@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import Header from './Header';
 
@@ -9,7 +10,11 @@ describe('<Header />', () => {
   const title = 'Products';
 
   beforeEach(() => {
-    wrapper = <Header title={title} />;
+    wrapper = (
+      <BrowserRouter>
+        <Header title={title} />
+      </BrowserRouter>
+    );
   });
 
   // 1. UI
@@ -61,7 +66,11 @@ describe('<Header />', () => {
   it('should call onAdd method', () => {
     const onAdd = jest.fn();
     // Arrange
-    render(<Header title="Products" onAdd={onAdd} />);
+    render(
+      <BrowserRouter>
+        <Header title="Products" onAdd={onAdd} />
+      </BrowserRouter>
+    );
 
     // Act
     const addButton = screen.getByRole('button', { name: /adicionar/i });
@@ -74,7 +83,11 @@ describe('<Header />', () => {
   it('should call onRefresh method', () => {
     const onRefresh = jest.fn();
     // Arrange
-    render(<Header title="Products" onRefresh={onRefresh} />);
+    render(
+      <BrowserRouter>
+        <Header title="Products" onRefresh={onRefresh} />
+      </BrowserRouter>
+    );
 
     // Act
     const refreshButton = screen.getByRole('button', { name: /atualizar/i });
@@ -87,7 +100,11 @@ describe('<Header />', () => {
   it('should call onRefresh method when dropdown select has been changed', async () => {
     // Arrange
     const onRefresh = jest.fn((params) => params);
-    render(<Header title="Products" onRefresh={onRefresh} />);
+    render(
+      <BrowserRouter>
+        <Header title="Products" onRefresh={onRefresh} />
+      </BrowserRouter>
+    );
 
     // Act
     const select = screen.getByRole('combobox');
@@ -98,5 +115,39 @@ describe('<Header />', () => {
 
     // Assert
     expect(onRefresh).toHaveBeenCalledTimes(1);
+  });
+
+  it('should hide index buttons when type property is "form"', () => {
+    // Arrange
+    render(
+      <BrowserRouter>
+        <Header title="Products" type="form" />
+      </BrowserRouter>
+    );
+
+    // Act
+    const addButton = screen.queryByRole('button', { name: /adicionar/i });
+    const refreshButton = screen.queryByRole('button', { name: /atualizar/i });
+    const select = screen.queryByRole('combobox');
+
+    // Assert
+    expect(addButton).not.toBeInTheDocument();
+    expect(refreshButton).not.toBeInTheDocument();
+    expect(select).not.toBeInTheDocument();
+  });
+
+  it('should show form buttons when type property is "form"', () => {
+    // Arrange
+    render(
+      <BrowserRouter>
+        <Header title="Products" type="form" />
+      </BrowserRouter>
+    );
+
+    // Act
+    const closeButton = screen.getByRole('button', { name: /fechar/i });
+
+    // Assert
+    expect(closeButton).toBeInTheDocument();
   });
 });

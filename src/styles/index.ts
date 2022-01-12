@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-    #root {
+    #root, html {
         height: 100%;
     }
 `;

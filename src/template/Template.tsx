@@ -16,15 +16,9 @@ export default function Template({ menus }: Props) {
       <Sidebar values={menus} />
       <Layout>
         <Header />
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
+        <S.ContentWrapper>
           <Outlet />
-        </Content>
+        </S.ContentWrapper>
         <Footer />
       </Layout>
     </S.Wrapper>

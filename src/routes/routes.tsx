@@ -1,9 +1,9 @@
 import Product from '@/pages/Product/Product';
+import ProductForm from '@/pages/Product/ProductForm/ProductForm';
 import Template from '@/template/Template';
+import { Content } from 'antd/lib/layout/layout';
 import * as React from 'react';
 import { RouteObject, useRoutes } from 'react-router-dom';
-
-import * as S from './routes.styles';
 
 export default function RouterTemplate() {
   const menus = [{ id: 1, title: 'Products', icon: null, path: '/products' }];
@@ -12,11 +12,19 @@ export default function RouterTemplate() {
     {
       path: '/',
       element: <Template menus={menus} />,
-      children: [{ path: '/products', element: <Product /> }],
+      children: [
+        {
+          path: '/products',
+          children: [
+            { index: true, element: <Product /> },
+            { path: '/products/:id', element: <ProductForm /> },
+          ],
+        },
+      ],
     },
   ];
 
   const element = useRoutes(routes);
 
-  return <S.Wrapper>{element}</S.Wrapper>;
+  return <Content>{element}</Content>;
 }
